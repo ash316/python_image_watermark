@@ -15,9 +15,9 @@ def convert_to_grayscale(picture):
       setColor(wm_image_pixel,  combined_color)
   return picture
 
-def add_border(picture, width):
+def add_border(picture, width=4, color=black):
   for x in range(width):
-    addRect(picture, x, x, getWidth(picture) - (x + x + 1),  getHeight(picture) - (x + x + 1), black)
+    addRect(picture, x, x, getWidth(picture) - (x + x + 1),  getHeight(picture) - (x + x + 1), color)
 		 
 # This function will add watermark in the center.
 def add_water_mark(building_picture, logo_picture):
@@ -56,8 +56,6 @@ def add_water_mark(building_picture, logo_picture):
       combined_color  = makeColor(br * 0.7 + int(lr * 0.3), bg * 0.7 + int(lg * 0.3), bb * 0.7 + int(lb * 0.3))
       setColor(building_pixel, combined_color)
       
-  # Add thin black color border
-  add_border(building_picture, 4)
   return building_picture
   
 
@@ -70,6 +68,9 @@ logo_file = pickAFile()
 logo_picture = makePicture(logo_file)
 
 watermarked_image = add_water_mark(building_picture, logo_picture)
+# Add thin black color border
+add_border(watermarked_image)
+
 writePictureTo(watermarked_image , "c:\Apps\RMIT_photo_colour.jpg")
 print "RMIT_photo_colour.jpg Created successfully"
 
