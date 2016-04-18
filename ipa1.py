@@ -52,8 +52,11 @@ def add_water_mark(building_picture, logo_picture):
       combined_color  = makeColor(br * 0.7 + int(lr * 0.3), bg * 0.7 + int(lg * 0.3), bb * 0.7 + int(lb * 0.3))
       setColor(building_pixel, combined_color)
       
-  # Add thin black color border
+  # Add thin black color border (4 pixels in width)
   addRect(building_picture, 0, 0, building_pic_width - 1, building_pic_height - 1, black)
+  addRect(building_picture, 1, 1, building_pic_width - 3, building_pic_height - 3, black)
+  addRect(building_picture, 2, 2, building_pic_width - 5, building_pic_height - 5, black)
+  addRect(building_picture, 3, 3, building_pic_width - 7, building_pic_height - 7, black)
   return building_picture
 
 # Pick building pic
